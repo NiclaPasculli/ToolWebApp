@@ -1,0 +1,123 @@
+﻿@model IEnumerable<ToolWebApp.Domain.Tool>
+
+@{
+    ViewBag.Title = "ToolTable";
+}
+
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        border-style: outset;
+    }
+</style>
+@using ResourceTool
+<table id="toolTable">
+
+    <thead>
+        <tr>
+            <th>
+                @Resource1.IdToolLable
+            </th>
+            <th>
+                @Resource1.BoschCodeCol
+            </th>
+            <th>
+                @Resource1.DescriptionCol
+            </th>
+            <th>
+                @Resource1.PrimarySupplierCol
+            </th>
+            <th>
+                @Resource1.SecondarySupplierCol
+            </th>
+            <th>
+                @Resource1.QuantityCol
+            </th>
+            <th>
+                @Resource1.TurretCodeCol
+            </th>
+            <th>
+                QR code
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+
+    <tbody id=" toolTableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td id="toolTableBodyRow" onclick="openDetails(this.innerHTML)">*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdTool)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BoschCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimarySupplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondarySupplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TurretCode)
+                </td>
+                <td class="qrcode-column"></td>
+
+                <td>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-warning .exclude-export" onclick="GetSaveModal('@item.IdTool')">Edit</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-success" onclick="GetDetail('@item.IdTool')">Detail</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete(event, '@item.IdTool')">Delete</button>
+                        </div>
+                    </div>
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+@section scripts
+    {
+    <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/b-2.3.6/fc-4.2.2/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/b-2.3.6/fc-4.2.2/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.js"></script>
+    <script type="text/javascript" src="jquery.qrcode.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#toolTable').DataTable({
+                "scrollY": "450px",
+                "scrollCollapse": true,
+                "paging": true
+                
+
+            });
+        });
+
+       
+    </script>
+}

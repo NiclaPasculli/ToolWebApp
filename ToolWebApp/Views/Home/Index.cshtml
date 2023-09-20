@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<main>
+    <style>
+        .centered-title {
+            text-align: center;
+        }
+    </style>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 class="centered-title">Tools</h1>
+        <p class="lead">Tabella Tools</p>
+
+    </section>
+
+    <h2>Tool</h2>
+    @Html.ActionLink("Lista Tool", "GetAll", "Tool", null, new { @class = "btn btn-primary" })
+    
+
+    <h2>Turret</h2>
+    @Html.ActionLink("Lista Turret", "GetAll", "Turret", null, new { @class = "btn btn-primary" })
+</main>

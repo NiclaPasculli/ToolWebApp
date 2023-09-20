@@ -1,0 +1,24 @@
+﻿<div id="DetailByDesc">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@ResourceTool.Resource1.IdToolLable</th>
+                <th>Descrizione</th>
+                <th>Fornitore Primario</th>
+                <!-- Aggiungi altre colonne se necessario -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tool in Model)
+            {
+                <tr>
+                    <td>@tool.IdTool</td>
+                    <td>@tool.Description</td>
+                    <td>@tool.PrimarySupplier</td>
+
+                    <!-- Aggiungi altre colonne se necessario -->
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

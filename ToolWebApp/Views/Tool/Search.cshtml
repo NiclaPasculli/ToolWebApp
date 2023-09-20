@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ToolWebApp.Domain.Tool>
+
+@if (Model != null && Model.Any())
+{
+   <table id="searchResultTable" class="table table-striped">
+      
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">@ResourceTool.Resource1.IdToolLable</th>
+                  <th scope="col">@ResourceTool.Resource1.DescriptionCol</th>
+                  <th scope="col">@ResourceTool.Resource1.TurretCodeCol</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              @foreach (var tool in Model)
+              {
+                  <tr>
+                      <th scope="row">@tool.IdTool</th>
+                      <td>@tool.Description</td>
+                      <td>@tool.TurretCode</td>
+                      <td>
+                          <button type="button" class="btn btn-warning" onclick="GetSaveModal('@tool.IdTool')"> Edit </button>
+                          <button type="button" class="btn btn-success" onclick="window.location.href='@Url.Action("Detail", "Tool", new { id = tool.IdTool })'">Detail</button>
+                          <button type="button" class="btn btn-danger" onclick="confirmDelete(event, '@tool.IdTool' )">Delete</button>
+                      </td>
+                  </tr>
+              }
+              </tbody>
+      </table>
+}
+else
+{
+    <p>Nessun risultato trovato.</p>
+}
+
+@section scripts {
+    <link href="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/b-2.3.6/fc-4.2.2/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/v/dt/jq-3.6.0/dt-1.13.4/b-2.3.6/fc-4.2.2/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#searchResultTable').DataTable();
+        });
+    </script>
+}
